@@ -289,8 +289,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b135c7eeab6a8647bd5c2d30ed54b5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 865471533}
-  smoothTime: 0.2
+  dumping: 1.5
+  offset: {x: 2, y: 1}
+  isLeft: 0
 --- !u!114 &519420035
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -509,8 +510,8 @@ GameObject:
   - component: {fileID: 865471529}
   - component: {fileID: 865471527}
   m_Layer: 0
-  m_Name: chel
-  m_TagString: Untagged
+  m_Name: Player
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
