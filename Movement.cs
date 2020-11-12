@@ -39,7 +39,7 @@ public class Movement : MonoBehaviour
         moveInput = Input.GetAxis("Horizontal");
         chel.velocity = new Vector2(moveInput * spd, chel.velocity.y);
         
-        if(moveInput > 0)
+        if(moveInput > 0 || moveInput < 0)
         {
             anim.SetInteger("state", 1);
         }
@@ -48,8 +48,22 @@ public class Movement : MonoBehaviour
             anim.SetInteger("state", 0);
         }
 
+        if (Input.GetKey(KeyCode.Space) && moveInput > 0 || moveInput < 0)
+        {
+            anim.SetInteger("JumpState", 1);
+        }
+        if (Input.GetKey(KeyCode.Space) && extraJumps > 0)
+        {
+            anim.SetInteger("JumpState", 1);
+        }
+        else if(isGrounded == true)
+        {
+            anim.SetInteger("JumpState", 0);
+        } 
 
-        if(facingRight == false && moveInput > 0)
+
+
+        if (facingRight == false && moveInput > 0)
         {
             Flip();
         } else if(facingRight == true && moveInput < 0)
