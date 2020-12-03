@@ -5,6 +5,7 @@ using System.Security.Cryptography;
 using System.Threading;
 using UnityEngine;
 
+
 public class Follower : MonoBehaviour
 {
 
@@ -29,7 +30,7 @@ public class Follower : MonoBehaviour
         if (playerIsLeft)
         {
             transform.position = new Vector3(player.position.x - offset.x, player.position.y - offset.y, transform.position.z);
-        }
+        }       
         else
         {
             transform.position = new Vector3(player.position.x + offset.x, player.position.y + offset.y, transform.position.z);

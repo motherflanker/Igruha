@@ -23,6 +23,9 @@ public class Movement : MonoBehaviour
     private int extraJumps;
     public int ejValue;
 
+    bool canJump;
+    bool canWallJump;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -74,20 +77,21 @@ public class Movement : MonoBehaviour
 
     void Update()
     {
-        if(isGrounded == true)
+        if(isGrounded == true || canWallJump == true)
         {
-            extraJumps = ejValue;
+            canJump = true;
         }
-        if (Input.GetKeyDown(KeyCode.Space) && extraJumps > 0)
+        else
         {
-            chel.velocity = Vector2.up * force;
-            extraJumps--;
+            canJump = false;
         }
-        else if (Input.GetKeyDown(KeyCode.Space) && extraJumps == 0 && isGrounded == true)
+        if (Input.GetKeyDown(KeyCode.Space) && canJump)
         {
-            chel.velocity = Vector2.up * force;
+            DoJump();
         }
     }
+
+    public void DoJump() => chel.velocity = Vector2.up * force;
 
     void Flip()
     {
@@ -97,4 +101,20 @@ public class Movement : MonoBehaviour
         transform.localScale = Scaler;
     }
     
+    public void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag.Equals("Wall"))
+        {
+            canWallJump = true;
+        }
+    }
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag.Equals("Wall"))
+        {
+            canWallJump = false;
+        }
+    }
+
+
 }
